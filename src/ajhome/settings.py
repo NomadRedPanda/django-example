@@ -25,7 +25,10 @@ SECRET_KEY = 'django-insecure-n#4oa5^$t=noi6qfe@xan-m=ycl+2$k*zw1^x9v0!o^#3n(*z-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+        '127.0.0.1',
+        '.ajhome.cc',     #https://saas.ajhome.cc
+]
 
 
 # Application definition
