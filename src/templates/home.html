@@ -1,14 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Hello Ares, I'm Enola from 2044.</h1>
-    <h1>I meet QQ here.</h1>
-    <h2>Ares: how are you all doing?</h2>
-    <h3>Enola: I'm good. How about you?</h3>
-</body>
-</html>
+{% extends 'base.html' %}
+
+
+{% block head_title %}{{ page_title }} - {{ block.super }}{% endblock head_title %}
+
+
+{% block content %}
+<h1>{{ page_title }}</h1>
+<p>Hello again!</p>
+<p>Page visits: {{ page_visit_count }}</p>
+<p>percent: {{ percent }}</p>
+<p>Total visits: {{ total_visit_count }}</p>
+
+
+{% endblock content %}
