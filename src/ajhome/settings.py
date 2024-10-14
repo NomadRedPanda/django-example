@@ -26,6 +26,7 @@ SECRET_KEY = 'django-insecure-n#4oa5^$t=noi6qfe@xan-m=ycl+2$k*zw1^x9v0!o^#3n(*z-
 DEBUG = True
 
 ALLOWED_HOSTS = [
+        '0.0.0.0',
         '127.0.0.1',
         '.ajhome.cc',     #https://saas.ajhome.cc
 ]
@@ -77,23 +78,23 @@ WSGI_APPLICATION = 'ajhome.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'postgres',
-#         'USER': 'postgres',
-#         'PASSWORD': 'postgres',
-#         'HOST': 'db',  # Your Supabase VM IP address
-#         'PORT': '5432',           # Default PostgreSQL port
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
+        'HOST': 'db',  # Your Supabase VM IP address
+        'PORT': '5432',           # Default PostgreSQL port
+    }
+}
 
 
 
