@@ -18,3 +18,5 @@ def home_view(request, *args, **kwargs):
     }
     PageVisit.objects.create(path=request.path)
     return render(request,'home.html', context )
+
+
