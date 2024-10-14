@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  app:
+    # image: nomadredpanda/django-example:1.2
+    build: .
+    environment:
+      PORT: 3000
+    ports:
+      - "3000:3000"
+    # volumes:
+    #   - .:/code  # Optional: for development, to bind mount your local code
+    command: ["bash", "-c", "./paracord_runner.sh"]
+    depends_on:
+      - db
+
+  db:
+    image: postgres
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres

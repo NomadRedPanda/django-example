@@ -1,2 +1,5 @@
 django
 gunicorn
+
+# for database
+psycopg2
