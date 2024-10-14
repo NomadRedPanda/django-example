@@ -44,7 +44,7 @@ RUN pip install -r /app/requirements.txt
 RUN chmod +x /app/start.sh
 
 # Expose port 8000 (for Gunicorn)
-EXPOSE 8000
+EXPOSE 3003
 
 # Clean up apt cache to reduce image size
 RUN apt-get remove --purge -y \

@@ -9,7 +9,7 @@ services:
     build: .
     command: /app/start.sh
     ports:
-      - "8000:8000"
+      - "3003:3003"
     volumes:
       - .:/app  # Optional: for development, to bind mount your local code
     depends_on:
