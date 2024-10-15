@@ -10,7 +10,7 @@ echo "PostgreSQL started"
 # Run migrations and start the server
 python manage.py makemigrations --no-input
 python manage.py migrate --no-input
-python manage.py runserver 0.0.0.0:8000
+python manage.py runserver 0.0.0.0:3003
 # gunucorn ajhome.wsgi --bind "0.0.0.0:${PORT:-8000}"
 
 # Start Gunicorn server
