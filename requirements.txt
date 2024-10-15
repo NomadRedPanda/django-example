@@ -1,5 +1,9 @@
 django
-gunicorn
+python-decouple
+dj-database-url
 
+
+
+gunicorn
 # for database
 psycopg2
