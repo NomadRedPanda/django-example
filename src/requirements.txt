@@ -1,0 +1,9 @@
+django
+python-decouple
+dj-database-url
+
+
+
+gunicorn
+# for database
+psycopg2
