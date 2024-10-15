@@ -15,5 +15,5 @@ python manage.py runserver 0.0.0.0:8000
 
 # Start Gunicorn server
 exec gunicorn ajhome.wsgi:application \
-    --bind 0.0.0.0:8000 \
+    --bind 0.0.0.0:3003 \
     --workers 3
