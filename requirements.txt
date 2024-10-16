@@ -1,9 +1,12 @@
 django
 python-decouple
 dj-database-url
-
+requests
 
 
 gunicorn
 # for database
 psycopg2
+
+# R2 storages
+django-storages[s3]

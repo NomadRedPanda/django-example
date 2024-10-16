@@ -1,21 +1,16 @@
 version: '3.8'
-networks:
-  webnet:
-    driver: bridge
-    
+
 services:
   web:
     # image: nomadredpanda/django-example:1.2
     build: .
-    command: /app/start.sh
+    command: ./paracord_runner.sh  # Runs the bash script you created
     ports:
-      - "80:80"
-    volumes:
-      - .:/app  # Optional: for development, to bind mount your local code
+      - "8000:8000"
     depends_on:
       - db
     networks:
-      - webnet
+      - docker_compose_example
 
   db:
     image: postgres
@@ -28,6 +23,11 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
     networks:
-      - webnet
+      - docker_compose_example
+
 volumes:
   postgres_data:
+
+networks:
+  docker_compose_example:
+    driver: bridge

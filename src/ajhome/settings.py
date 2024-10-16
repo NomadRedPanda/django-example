@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-n#4oa5^$t=noi6qfe@xan-m=ycl+2$k*zw1^x9v0!o^#3n(*z-
 DEBUG = config("DJANGO_DEBUG", cast=bool)
 
 ALLOWED_HOSTS = [
-        '.ajhome.cc',     #https://saas.ajhome.cc
+        '.ajhome.cc', 
 ]
 if DEBUG:
     ALLOWED_HOSTS += [
@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'visits'
+    'visits',
+    'commando',
 ]
 
 MIDDLEWARE = [
@@ -80,8 +81,6 @@ WSGI_APPLICATION = 'ajhome.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -92,27 +91,15 @@ DATABASES = {
 CONN_MAX_AGE = config("CONN_MAX_AGE", cast=int, default=300)
 DATABASE_URL = config("DATABASE_URL", default=None)
 
-if DATABASE_URL is not None:
-    import dj_database_url
-    DATABASES = {
-        "default": dj_database_url.config(
-            default=DATABASE_URL,
-            conn_max_age=CONN_MAX_AGE,
-            conn_health_checks=True,
-        )
-    }
-
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'postgres',
-#         'USER': 'postgres',
-#         'PASSWORD': 'postgres',
-#         'HOST': 'db',  # Your Supabase VM IP address
-#         'PORT': '5432',           # Default PostgreSQL port
+# if DATABASE_URL is not None:
+#     import dj_database_url
+#     DATABASES = {
+#         "default": dj_database_url.config(
+#             default=DATABASE_URL,
+#             conn_max_age=CONN_MAX_AGE,
+#             conn_health_checks=True,
+#         )
 #     }
-# }
 
 
 
@@ -151,6 +138,35 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
+STATICFILES_BASE_DIR = BASE_DIR / "staticfiles"
+STATICFILES_BASE_DIR.mkdir(exist_ok=True, parents=True)
+STATICFILES_VENDOR_DIR = STATICFILES_BASE_DIR / "vendors"
+
+# source(s) for python manage.py collectstatic
+STATICFILES_DIRS = [
+    STATICFILES_BASE_DIR
+]
+
+
+
+
+
+
+
+# R2 Storages
+import helpers.cloudflare.settings
+STORAGES = {
+    "default": {
+        "BACKEND": "helpers.cloudflare.storages.MediaFileStorage",
+        "OPTIONS":helpers.cloudflare.settings.CLOUDFLARE_R2_CONFIG_OPTIONS,
+    }, #default -> user/ image/ file field uploads
+    "staticfiles":{
+        "BACKEND": "helpers.cloudflare.storages.StaticFileStorage",
+        "OPTIONS":helpers.cloudflare.settings.CLOUDFLARE_R2_CONFIG_OPTIONS,
+    } # staticfiles
+}
+
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field

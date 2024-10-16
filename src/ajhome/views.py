@@ -20,3 +20,5 @@ def home_view(request, *args, **kwargs):
     return render(request,'home.html', context )
 
 
+def dashbord_view(request,*args,**kwargs):
+    return render(request,"dashbord.html",{})
